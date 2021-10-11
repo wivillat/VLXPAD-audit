@@ -345,6 +345,11 @@ describe("VLXPAD Contract Test Suite", () => {
     await expect(vlx.setFees(6000, 6000, feeRewardSwapPath ,trader1.address)).revertedWith("Fees must not total more than 100%");
     });
 
+    it("Should have a feeRewardSwapPath length greater than 1", async () => {
+      let feeRewardSwapPath = [vlx.address];   
+      await expect(vlx.setFees(1000, 2000, feeRewardSwapPath ,trader1.address)).revertedWith("Invalid path");
+    });
+
     it("Should not let fee reward address be the zero address", async () => {
       let feeRewardSwapPath = [vlx.address, eth.address];   
       await expect(vlx.setFees(1000, 2000, feeRewardSwapPath , ZeroAddress)).revertedWith("Fee reward address must not be zero address");
