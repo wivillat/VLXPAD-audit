@@ -162,15 +162,13 @@ contract VLXPAD is IERC20, OwnableUpgradeSafe, LGEWhitelisted {
 				}
 				
 			}
-			console.log(feeBurnAmount);
-            console.log(feeRewardAmount);
 
 			amount = amount.sub(feeBurnAmount).sub(feeRewardAmount);
-			console.log(amount);
+		
 		}
 
         _balances[recipient] = _balances[recipient].add(amount);
-        console.log(_balances[recipient]);
+       
         emit Transfer(sender, recipient, amount);
     }
 	
